@@ -25,7 +25,7 @@ class HotWaterShutdownBinarySensor(MoscowHotWaterEntity, BinarySensorEntity):
     def is_on(self) -> bool | None:
         data = self.coordinator.data
         if not data.start or not data.end:
-            return None
+            return False
         now = dt_util.now()
         start = data.start if data.start.tzinfo else data.start.replace(tzinfo=now.tzinfo)
         end = data.end if data.end.tzinfo else data.end.replace(tzinfo=now.tzinfo)
@@ -34,4 +34,4 @@ class HotWaterShutdownBinarySensor(MoscowHotWaterEntity, BinarySensorEntity):
         # A false PROBLEM binary sensor is rendered as "OK" by Home Assistant.
         # Outside the shutdown interval there is no problem to report, so keep
         # the state unknown instead of displaying a misleading "OK".
-        return None
+        return False
