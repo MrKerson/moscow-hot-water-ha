@@ -1,0 +1,44 @@
+{
+  "title": "Отключение горячей воды в Москве",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Адрес дома",
+        "description": "Введите полный адрес в Москве одной строкой. На следующем шаге выберите подходящую подсказку mos.ru.",
+        "data": {"address_query": "Адрес дома"},
+        "data_description": {"address_query": "Например: Ленинский проспект, 10"}
+      },
+      "select_address": {
+        "title": "Выберите адрес",
+        "description": "Подсказки mos.ru по запросу: {query}",
+        "data": {"address": "Найденный адрес"}
+      },
+      "reconfigure": {
+        "title": "Изменить адрес",
+        "description": "Введите новый полный адрес одной строкой.",
+        "data": {"address_query": "Адрес дома"},
+        "data_description": {"address_query": "Например: Ленинский проспект, 10"}
+      }
+    },
+    "error": {
+      "cannot_connect": "Не удалось подключиться к сервису данных Москвы",
+      "address_not_found": "Адрес не найден. Попробуйте указать улицу, дом и корпус одной строкой",
+      "unknown": "Непредвиденная ошибка. Подробности находятся в журнале Home Assistant"
+    },
+    "abort": {
+      "already_configured": "Этот адрес уже добавлен",
+      "reconfigure_successful": "Адрес обновлён"
+    }
+  },
+  "entity": {
+    "binary_sensor": {"shutdown": {"name": "Горячая вода отключена"}},
+    "sensor": {
+      "start": {"name": "Начало отключения"},
+      "end": {"name": "Окончание отключения"},
+      "days_until": {"name": "Дней до отключения"},
+      "days_remaining": {"name": "Дней до включения"},
+      "status": {"name": "Статус", "state": {"not_scheduled": "Не запланировано", "scheduled": "Запланировано", "disabled": "Горячая вода отключена", "completed": "Отключение завершено"}}
+    },
+    "button": {"refresh": {"name": "Обновить данные"}}
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Moscow Hot Water Shutdown",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Address",
+        "description": "Enter the complete Moscow address in one line. On the next step, select an address suggested by mos.ru.",
+        "data": {"address_query": "Address"},
+        "data_description": {"address_query": "For example: Leninsky Prospekt, 10"}
+      },
+      "select_address": {
+        "title": "Select address",
+        "description": "Results from mos.ru for: {query}",
+        "data": {"address": "Found address"}
+      },
+      "reconfigure": {
+        "title": "Change address",
+        "description": "Enter a new complete address in one line.",
+        "data": {"address_query": "Address"}
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to the Moscow data service",
+      "address_not_found": "Address not found",
+      "unknown": "Unexpected error. See Home Assistant logs"
+    },
+    "abort": {
+      "already_configured": "This address is already configured",
+      "reconfigure_successful": "Address updated"
+    }
+  },
+  "entity": {
+    "binary_sensor": {"shutdown": {"name": "Hot water shutdown"}},
+    "sensor": {
+      "start": {"name": "Shutdown start"},
+      "end": {"name": "Shutdown end"},
+      "days_until": {"name": "Days until shutdown"},
+      "days_remaining": {"name": "Days remaining"},
+      "status": {"name": "Status", "state": {"not_scheduled": "Not scheduled", "scheduled": "Scheduled", "disabled": "Hot water is off", "completed": "Completed"}}
+    },
+    "button": {"refresh": {"name": "Refresh"}}
+  }
+}
